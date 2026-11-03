@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovaTech – Sales Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-layout">
+
+    <!-- Barre latérale -->
+    <aside class="sidebar">
+      <div class="logo-badge">
+        <img src="logo.jpg" alt="Logo NovaTech" class="logo-img">
+      </div>
+
+      <button type="button" class="side-btn active" aria-label="Tableau de bord">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>
+      </button>
+      <button type="button" class="side-btn" aria-label="Calendrier">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </button>
+      <button type="button" class="side-btn" aria-label="Statistiques">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12A9 9 0 1 1 12 3v9z"/><path d="M15 3.5A9 9 0 0 1 20.5 9H15z"/></svg>
+      </button>
+      <button type="button" class="side-btn" aria-label="Messages">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
+      </button>
+      <button type="button" class="side-btn side-btn-bottom" aria-label="Paramètres">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3h.1a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8v.1a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+      </button>
+    </aside>
+
+    <!-- Contenu -->
+    <div class="app-content">
+
+      <header class="page-header">
+        <div>
+          <h1>NovaTech</h1>
+          <p class="header-subtitle">Voici un aperçu de vos performences commerciales</p>
+        </div>
+        <span class="header-chip">Janvier – Juin 2026</span>
+      </header>
+
+      <div class="content-grid">
+
+        <main>
+          <!-- Filtres et recherche -->
+          <section class="filters-container" aria-label="Filtres">
+            <div class="search-wrapper">
+              <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="7"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="search-input" placeholder="Rechercher un produit (ex : souris)..." autocomplete="off">
+            </div>
+
+            <select id="category-filter" aria-label="Filtrer par catégorie">
+              <option value="Toutes les catégories">Toutes les catégories</option>
+              <option value="Smartphones">Smartphones</option>
+              <option value="Accessoires">Accessoires</option>
+              <option value="Informatique">Informatique</option>
+              <option value="Téléviseurs">Téléviseurs</option>
+              <option value="Audio">Audio</option>
+            </select>
+
+            <select id="price-sort" aria-label="Trier par prix">
+              <option value="defaut">Trier par prix</option>
+              <option value="croissant">Prix croissant</option>
+              <option value="decroissant">Prix décroissant</option>
+            </select>
+
+            <button type="button" id="reset-btn" class="btn-reset">Réinitialiser</button>
+          </section>
+
+          <!-- Cartes KPI -->
+          <section class="kpi-container" aria-label="Indicateurs clés">
+            <article class="kpi-card">
+              <div class="kpi-header">
+                <h3>Nombre de ventes</h3>
+                <span class="kpi-icon">📈</span>
+              </div>
+              <p id="kpi-sales-count" class="kpi-value">0</p>
+            </article>
+
+            <article class="kpi-card">
+              <div class="kpi-header">
+                <h3>Quantité totale</h3>
+                <span class="kpi-icon">📦</span>
+              </div>
+              <p id="kpi-total-quantity" class="kpi-value">0</p>
+            </article>
+
+            <article class="kpi-card">
+              <div class="kpi-header">
+                <h3>Prix moyen par unité</h3>
+                <span class="kpi-icon">💵</span>
+              </div>
+              <p id="kpi-average-price" class="kpi-value">0 €</p>
+            </article>
+
+            <article class="kpi-card highlight-card">
+              <div class="kpi-header">
+                <h3>Chiffre d'affaires</h3>
+                <span class="kpi-icon">💰</span>
+              </div>
+              <p id="kpi-total-ca" class="kpi-value">0 €</p>
+            </article>
+          </section>
+
+          <!-- Graphique principal -->
+          <section class="card chart-card">
+            <h2 class="card-title">Chiffre d'affaires par catégorie</h2>
+            <div class="chart-box chart-box-lg">
+              <canvas id="category-chart"></canvas>
+            </div>
+          </section>
+
+          <!-- Graphiques secondaires -->
+          <section class="secondary-charts">
+            <div class="card chart-card chart-wide">
+              <h2 class="card-title">Ventes &amp; chiffre d'affaires</h2>
+              <div class="chart-box">
+                <canvas id="line-chart"></canvas>
+              </div>
+            </div>
+
+            <div class="card chart-card chart-narrow">
+              <h2 class="card-title">Quantités par catégorie</h2>
+              <div class="chart-box">
+                <canvas id="doughnut-chart"></canvas>
+              </div>
+            </div>
+          </section>
+
+          <!-- Tableau des ventes -->
+          <section class="card table-card">
+            <div class="table-header">
+              <h2 class="card-title">Détail des ventes</h2>
+              <span id="results-count" class="results-count"></span>
+            </div>
+
+            <div class="table-scroll">
+              <table>
+                <colgroup>
+                  <col style="width: 16%">
+                  <col style="width: 32%">
+                  <col style="width: 20%">
+                  <col style="width: 16%">
+                  <col style="width: 16%">
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Produit</th>
+                    <th>Catégorie</th>
+                    <th class="num">Prix unitaire</th>
+                    <th class="num">Quantité</th>
+                  </tr>
+                </thead>
+                <tbody id="table-body">
+                  <!-- Lignes ajoutées par app.js -->
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+
+        <!-- Panneau violet à droite -->
+        <aside class="side-panel">
+          <h2 class="side-panel-title">Dernières ventes</h2>
+          <p id="recent-count" class="side-panel-sub"></p>
+          <ul id="recent-list" class="recent-list"></ul>
+        </aside>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
